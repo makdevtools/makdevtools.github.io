@@ -1,771 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MK DevTools | Unity Asset Store Publisher</title>
-  <meta
-    name="description"
-    content="MK DevTools creates professional Unity assets with clear support, documentation, and publisher information."
-  />
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg-soft: #121830;
-      --panel: #161d38;
-      --panel-2: #1b2342;
-      --text: #f4f7ff;
-      --muted: #b8c2de;
-      --line: rgba(255, 255, 255, 0.1);
-      --primary: #5ea0ff;
-      --primary-2: #7f7bff;
-      --success: #7ddda3;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --container: 1180px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MK DevTools</title>
+
+<meta name="description" content="MK DevTools - Unity Asset Store tools and utilities.">
+
+<style>
+
+body{
+    font-family: system-ui, Arial, sans-serif;
+    margin:0;
+    background:#f5f6fa;
+    color:#222;
+    line-height:1.6;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+header{
+    background:#fff;
+    border-bottom:1px solid #ddd;
+}
+
+header h1{
+    margin:0;
+    font-size:26px;
+}
+
+nav{
+    margin-top:10px;
+}
+
+nav a{
+    margin-right:15px;
+    text-decoration:none;
+    color:#444;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+section{
+    margin-top:40px;
+}
+
+h2{
+    border-bottom:2px solid #eee;
+    padding-bottom:6px;
+}
+
+.asset{
+    background:#fff;
+    padding:15px;
+    border-radius:6px;
+    border:1px solid #ddd;
+    margin-top:15px;
+}
+
+.asset h3{
+    margin-top:0;
+}
+
+footer{
+    margin-top:60px;
+    padding:20px 0;
+    border-top:1px solid #ddd;
+    font-size:14px;
+    color:#555;
+}
+
+ul{
+    padding-left:20px;
+}
+
+@media (max-width:600px){
+
+    nav{
+        margin-top:15px;
     }
 
-    * {
-      box-sizing: border-box;
+    nav a{
+        display:inline-block;
+        margin-bottom:8px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+}
 
-    body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(94, 160, 255, 0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(127, 123, 255, 0.16), transparent 24%),
-        linear-gradient(180deg, #0b1020 0%, #0a0f1d 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 16, 32, 0.78);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      font-weight: 900;
-      box-shadow: var(--shadow);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 999px;
-      transition: 0.2s ease;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.07);
-      color: var(--text);
-    }
-
-    .hero {
-      padding: 72px 0 36px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .card,
-    .stat-card {
-      background: rgba(22, 29, 56, 0.82);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius-lg);
-    }
-
-    .hero-card {
-      padding: 38px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(94, 160, 255, 0.12);
-      border: 1px solid rgba(94, 160, 255, 0.25);
-      color: #dcebff;
-      font-size: 0.86rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h1, h2, h3 {
-      margin-top: 0;
-      line-height: 1.15;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4.2rem);
-      letter-spacing: -0.04em;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-size: clamp(1.6rem, 3vw, 2.35rem);
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
-
-    h3 {
-      font-size: 1.18rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin: 0 0 16px;
-      color: var(--muted);
-    }
-
-    .hero-copy {
-      max-width: 62ch;
-      font-size: 1.03rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #fff;
-      box-shadow: 0 10px 28px rgba(94, 160, 255, 0.25);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: var(--line);
-      color: var(--text);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .stat-card {
-      padding: 24px;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .check-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .check-list li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: var(--text);
-    }
-
-    .check-list li::before {
-      content: "✓";
-      width: 22px;
-      height: 22px;
-      flex: 0 0 22px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      background: rgba(125, 221, 163, 0.14);
-      color: var(--success);
-      font-weight: 900;
-      margin-top: 2px;
-    }
-
-    section {
-      padding: 30px 0;
-    }
-
-    .section-head {
-      margin-bottom: 20px;
-    }
-
-    .grid-2,
-    .grid-3 {
-      display: grid;
-      gap: 20px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .card {
-      padding: 24px;
-    }
-
-    .asset-card {
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .asset-top {
-      padding: 28px;
-      border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    }
-
-    .asset-badge {
-      display: inline-block;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(94, 160, 255, 0.12);
-      border: 1px solid rgba(94, 160, 255, 0.22);
-      color: #dcebff;
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .asset-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .asset-body {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-      padding: 28px;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .feature-list li,
-    .info-box,
-    .contact-list li {
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.035);
-      color: var(--text);
-    }
-
-    .stack {
-      display: grid;
-      gap: 12px;
-    }
-
-    .info-box strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    details {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 14px;
-      padding: 16px 18px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    details p {
-      margin-top: 12px;
-      margin-bottom: 0;
-    }
-
-    .contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .site-footer {
-      padding: 22px 0 42px;
-      color: var(--muted);
-    }
-
-    .footer-box {
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .small {
-      font-size: 0.94rem;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .asset-body,
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card,
-      .asset-top,
-      .asset-body,
-      .card,
-      .stat-card {
-        padding: 22px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .container {
-        width: min(calc(100% - 24px), var(--container));
-      }
-
-      .nav {
-        min-height: auto;
-        padding: 14px 0;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding-top: 44px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      h1 {
-        font-size: 2.25rem;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a href="#top" class="brand">
-        <span class="brand-logo">MK</span>
-        <span>MK DevTools</span>
-      </a>
 
-      <nav class="nav-links">
-        <a href="#assets">Assets</a>
-        <a href="#support">Support</a>
-        <a href="#documentation">Documentation</a>
-        <a href="#publisher">Publisher</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="container">
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">Unity Asset Store Publisher</div>
-          <h1>Professional Unity tools built for real projects.</h1>
-          <p class="hero-copy">
-            MK DevTools creates focused, practical Unity assets with an emphasis on reliability,
-            maintainability, and clean integration. This website provides product information,
-            documentation, support contacts, and publisher details for Asset Store customers.
-          </p>
+<h1>MK DevTools</h1>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#assets">View Assets</a>
-            <a class="btn btn-secondary" href="#support">Get Support</a>
-          </div>
-        </div>
+<nav>
+<a href="#assets">Assets</a>
+<a href="#support">Support</a>
+<a href="#documentation">Documentation</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
 
-        <div class="hero-side">
-          <div class="stat-card">
-            <div class="stat-number">1</div>
-            <h3>Current published asset line</h3>
-            <p class="small">
-              Starting with SecureSave, with room to expand the catalog as more Unity tools are released.
-            </p>
-          </div>
+</div>
+</header>
 
-          <div class="stat-card">
-            <h3>What users can find here</h3>
-            <ul class="check-list">
-              <li>Asset overviews and feature summaries</li>
-              <li>Documentation and setup resources</li>
-              <li>Support and contact information</li>
-              <li>Publisher trust and legal information</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="assets">
-      <div class="container">
-        <div class="section-head">
-          <h2>Assets</h2>
-          <p>
-            Current Unity Asset Store products from MK DevTools. New asset cards can be added here as your catalog grows.
-          </p>
-        </div>
+<div class="container">
 
-        <article class="card asset-card">
-          <div class="asset-top">
-            <div class="asset-badge">Featured Asset</div>
-            <h3>SecureSave</h3>
-            <p>
-              Encrypted, tamper-evident save handling for Unity projects, built for developers who want stronger
-              protection than plain PlayerPrefs or unprotected local files.
-            </p>
+<section>
+<p>
+MK DevTools develops practical tools and utilities for Unity developers.
+</p>
+</section>
 
-            <div class="asset-meta">
-              <span class="pill">Unity Tool</span>
-              <span class="pill">Save Security</span>
-              <span class="pill">Mobile Friendly</span>
-              <span class="pill">Production Ready</span>
-            </div>
-          </div>
 
-          <div class="asset-body">
-            <div>
-              <h3>Key Features</h3>
-              <ul class="feature-list">
-                <li>Encrypted save files with integrity verification</li>
-                <li>Tamper-evident save protection</li>
-                <li>Platform-aware key handling</li>
-                <li>Backup and recovery support</li>
-                <li>Multi-slot save support</li>
-                <li>Structured metadata and versioning</li>
-                <li>Designed for smooth integration into existing Unity projects</li>
-              </ul>
-            </div>
+<section id="assets">
 
-            <div class="stack">
-              <div class="info-box">
-                <strong>Best for</strong>
-                <span class="muted">Developers who need more secure save persistence for mobile or desktop Unity games.</span>
-              </div>
+<h2>Assets</h2>
 
-              <div class="info-box">
-                <strong>Documentation</strong>
-                <span class="muted">Replace this with your real documentation URL or README page.</span>
-              </div>
+<div class="asset">
 
-              <div class="info-box">
-                <strong>Asset Store Page</strong>
-                <span class="muted">Replace this with the live Unity Asset Store product link after publishing.</span>
-              </div>
+<h3>SecureSave</h3>
 
-              <div class="info-box">
-                <strong>Version</strong>
-                <span class="muted">Replace with the current public version number.</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+<p>
+SecureSave is a Unity asset that provides encrypted and tamper-evident save files
+for games and applications.
+</p>
 
-    <section id="support">
-      <div class="container">
-        <div class="section-head">
-          <h2>Support</h2>
-          <p>
-            A publisher website should clearly show where customers can get help and what information they should provide.
-          </p>
-        </div>
+<p><strong>Features</strong></p>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>Support Information</h3>
-            <div class="stack">
-              <div class="info-box">
-                <strong>Support Email</strong>
-                <span class="muted">support@mkdevtools.com</span>
-              </div>
+<ul>
+<li>Encrypted save files</li>
+<li>Tamper detection</li>
+<li>Multi-slot saves</li>
+<li>Backup support</li>
+<li>Designed for easy Unity integration</li>
+</ul>
 
-              <div class="info-box">
-                <strong>Response Time</strong>
-                <span class="muted">Replace with your target response time, for example 2–3 business days.</span>
-              </div>
+<p>
+<a href="#">Unity Asset Store page</a> |
+<a href="#">Documentation</a>
+</p>
 
-              <div class="info-box">
-                <strong>Please Include</strong>
-                <span class="muted">Unity version, asset version, target platform, error logs, and reproduction steps.</span>
-              </div>
-            </div>
-          </div>
+</div>
 
-          <div class="card">
-            <h3>FAQ</h3>
+</section>
 
-            <details>
-              <summary>How do I install the asset?</summary>
-              <p>
-                Add your real install steps here, including import guidance, minimum Unity version, and first setup steps.
-              </p>
-            </details>
 
-            <details>
-              <summary>Which platforms are supported?</summary>
-              <p>
-                Add your actual supported platforms and any platform-specific notes or limitations here.
-              </p>
-            </details>
+<section id="support">
 
-            <details>
-              <summary>How do updates and migrations work?</summary>
-              <p>
-                Add migration notes, upgrade guidance, and any breaking-change instructions here.
-              </p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
+<h2>Support</h2>
 
-    <section id="documentation">
-      <div class="container">
-        <div class="section-head">
-          <h2>Documentation</h2>
-          <p>
-            Clear documentation improves trust and reduces support requests.
-          </p>
-        </div>
+<p>
+If you have questions or encounter issues with one of the assets,
+please contact support.
+</p>
 
-        <div class="grid-3">
-          <div class="card">
-            <h3>Getting Started</h3>
-            <p>
-              Link to your quick-start guide, import instructions, setup tutorial, and first example.
-            </p>
-          </div>
+<p>
+<strong>Email:</strong> support@mkdevtools.com
+</p>
 
-          <div class="card">
-            <h3>Usage Guide</h3>
-            <p>
-              Link to configuration options, API usage, editor tools, and practical code examples.
-            </p>
-          </div>
+<p>
+When requesting support, please include:
+</p>
 
-          <div class="card">
-            <h3>Changelog</h3>
-            <p>
-              Link to version history so users can track fixes, additions, and upgrade notes.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+<ul>
+<li>Unity version</li>
+<li>Asset version</li>
+<li>Target platform</li>
+<li>Error messages or logs</li>
+</ul>
 
-    <section id="publisher">
-      <div class="container">
-        <div class="section-head">
-          <h2>Publisher Information</h2>
-          <p>
-            This section covers the core information users expect from a professional Unity Asset Store publisher website.
-          </p>
-        </div>
+</section>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>About MK DevTools</h3>
-            <p>
-              MK DevTools develops practical Unity assets focused on real development needs, clean implementation,
-              and long-term usability.
-            </p>
-            <p>
-              Replace this paragraph with your actual publisher description and background.
-            </p>
-          </div>
 
-          <div class="card">
-            <h3>Publisher Details</h3>
-            <p><strong>Publisher Name:</strong> MK DevTools</p>
-            <p><strong>Website:</strong> mkdevtools.com</p>
-            <p><strong>Support Email:</strong> support@mkdevtools.com</p>
-            <p><strong>Business Email:</strong> business@mkdevtools.com</p>
-            <p><strong>Location:</strong> Replace if you want to display a country or business region</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="documentation">
 
-    <section id="contact">
-      <div class="container">
-        <div class="grid-2">
-          <div class="card">
-            <h2>Contact</h2>
-            <p>
-              Use this area for support, business inquiries, and general publisher contact information.
-            </p>
+<h2>Documentation</h2>
 
-            <ul class="contact-list">
-              <li><strong>Support:</strong> support@mkdevtools.com</li>
-              <li><strong>Business:</strong> business@mkdevtools.com</li>
-              <li><strong>Documentation:</strong> Replace with your docs URL</li>
-              <li><strong>Asset Store Publisher Page:</strong> Replace with your publisher page URL</li>
-            </ul>
-          </div>
+<p>
+Documentation for each asset can be found in the asset package
+and in the online documentation.
+</p>
 
-          <div class="card">
-            <h2>Recommended Legal / Trust Pages</h2>
-            <p>
-              These pages are useful for a professional publisher website and help with credibility.
-            </p>
+<ul>
+<li><a href="#">SecureSave Documentation</a></li>
+<li><a href="#">Changelog</a></li>
+</ul>
 
-            <ul class="contact-list">
-              <li><strong>Privacy Policy</strong> — recommended if you collect support emails or use analytics</li>
-              <li><strong>Terms / Legal Notice</strong> — optional, depending on your setup and jurisdiction</li>
-              <li><strong>Support Policy</strong> — sets expectations for your customers</li>
-              <li><strong>Documentation / Changelog</strong> — reduces support effort and improves trust</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+</section>
 
-  <footer class="site-footer">
-    <div class="container footer-box">
-      <div>© 2026 MK DevTools. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
-        <a href="#support">Support</a>
-      </div>
-    </div>
-  </footer>
+
+<section id="about">
+
+<h2>About</h2>
+
+<p>
+MK DevTools is an independent Unity asset publisher focused on small,
+practical tools that help developers build games faster and more reliably.
+</p>
+
+</section>
+
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>
+General inquiries:
+</p>
+
+<p>
+<strong>Email:</strong> business@mkdevtools.com
+</p>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 MK DevTools
+</p>
+
+<p>
+<a href="#">Privacy Policy</a>
+</p>
+
+</footer>
+
+</div>
+
 </body>
 </html>
