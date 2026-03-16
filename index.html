@@ -1,221 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MK DevTools</title>
-
-<meta name="description" content="MK DevTools - Unity Asset Store tools and utilities.">
-
-<style>
-
-body{
-    font-family: system-ui, Arial, sans-serif;
-    margin:0;
-    background:#f5f6fa;
-    color:#222;
-    line-height:1.6;
-}
-
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:20px;
-}
-
-header{
-    background:#fff;
-    border-bottom:1px solid #ddd;
-}
-
-header h1{
-    margin:0;
-    font-size:26px;
-}
-
-nav{
-    margin-top:10px;
-}
-
-nav a{
-    margin-right:15px;
-    text-decoration:none;
-    color:#444;
-}
-
-nav a:hover{
-    text-decoration:underline;
-}
-
-section{
-    margin-top:40px;
-}
-
-h2{
-    border-bottom:2px solid #eee;
-    padding-bottom:6px;
-}
-
-.asset{
-    background:#fff;
-    padding:15px;
-    border-radius:6px;
-    border:1px solid #ddd;
-    margin-top:15px;
-}
-
-.asset h3{
-    margin-top:0;
-}
-
-footer{
-    margin-top:60px;
-    padding:20px 0;
-    border-top:1px solid #ddd;
-    font-size:14px;
-    color:#555;
-}
-
-ul{
-    padding-left:20px;
-}
-
-@media (max-width:600px){
-
-    nav{
-        margin-top:15px;
-    }
-
-    nav a{
-        display:inline-block;
-        margin-bottom:8px;
-    }
-
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK DevTools</title>
+  <meta name="description" content="MK DevTools - Unity Asset Store tools and utilities.">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<header>
-<div class="container">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a href="index.html" class="brand">MK DevTools</a>
+        <p class="tagline">Practical Unity tools and utilities for real projects.</p>
+      </div>
 
-<h1>MK DevTools</h1>
+      <nav class="main-nav">
+        <a href="index.html#assets">Assets</a>
+        <a href="index.html#support">Support</a>
+        <a href="index.html#documentation">Documentation</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<nav>
-<a href="#assets">Assets</a>
-<a href="#support">Support</a>
-<a href="#documentation">Documentation</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</nav>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Unity tools built to be useful</h1>
+        <p>
+          MK DevTools develops focused Unity assets that help developers ship faster,
+          improve quality, and add production-ready functionality without unnecessary bloat.
+        </p>
+      </div>
+    </section>
 
-</div>
-</header>
+    <section id="assets" class="section">
+      <div class="container">
+        <h2>Assets</h2>
+        <p class="section-intro">
+          Each asset has its own page with overview, feature highlights, platform support,
+          documentation details, and support information.
+        </p>
 
+        <div class="asset-grid">
+          <article class="asset-card">
+            <h3>SecureSave</h3>
+            <p>
+              Encrypted, tamper-evident save files for Unity with a focus on security,
+              reliability, and straightforward integration.
+            </p>
+            <ul>
+              <li>Encrypted save files</li>
+              <li>Tamper detection</li>
+              <li>Multi-slot save support</li>
+              <li>Backup and recovery workflows</li>
+            </ul>
+            <p>
+              <a class="button" href="assets/securesave.html">View Asset</a>
+            </p>
+          </article>
 
-<div class="container">
+          <article class="asset-card">
+            <h3>Mobile Haptics Pro</h3>
+            <p>
+              Advanced mobile haptics for Unity with one-line runtime API, no-code components,
+              custom patterns, event routing, and mixer-based arbitration.
+            </p>
+            <ul>
+              <li>Android + iOS support</li>
+              <li>No-code UI and gameplay integration</li>
+              <li>Visual pattern authoring</li>
+              <li>Editor preview and diagnostics tools</li>
+            </ul>
+            <p>
+              <a class="button" href="assets/mobile-haptics-pro.html">View Asset</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section>
-<p>
-MK DevTools develops practical tools and utilities for Unity developers.
-</p>
-</section>
+    <section id="support" class="section alt-section">
+      <div class="container narrow">
+        <h2>Support</h2>
+        <p>
+          If you run into issues or have questions about one of the assets, please get in touch.
+        </p>
+        <p><strong>Email:</strong> <a href="mailto:support@mkdevtools.com">support@mkdevtools.com</a></p>
+        <p>Please include the following when possible:</p>
+        <ul>
+          <li>Asset name and version</li>
+          <li>Unity version</li>
+          <li>Target platform</li>
+          <li>Error logs, screenshots, or reproduction steps</li>
+        </ul>
+      </div>
+    </section>
 
+    <section id="documentation" class="section">
+      <div class="container narrow">
+        <h2>Documentation</h2>
+        <p>
+          Documentation is provided inside each package and on the dedicated asset pages.
+          Asset-specific pages are the best place to find setup details, feature summaries,
+          and support links.
+        </p>
+      </div>
+    </section>
 
-<section id="assets">
+    <section id="about" class="section alt-section">
+      <div class="container narrow">
+        <h2>About</h2>
+        <p>
+          MK DevTools is an independent Unity asset publisher focused on small to medium-sized
+          developer tools that solve practical problems cleanly and reliably.
+        </p>
+      </div>
+    </section>
 
-<h2>Assets</h2>
+    <section id="contact" class="section">
+      <div class="container narrow">
+        <h2>Contact</h2>
+        <p>
+          For support, business inquiries, or publisher-related questions:
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:support@mkdevtools.com">support@mkdevtools.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-<div class="asset">
-
-<h3>SecureSave</h3>
-
-<p>
-SecureSave is a Unity asset that provides encrypted and tamper-evident save files
-for games and applications.
-</p>
-
-<p><strong>Features</strong></p>
-
-<ul>
-<li>Encrypted save files</li>
-<li>Tamper detection</li>
-<li>Multi-slot saves</li>
-<li>Backup support</li>
-<li>Designed for easy Unity integration</li>
-</ul>
-
-<p>
-<a href="#">Unity Asset Store page</a> |
-<a href="#">Documentation</a>
-</p>
-
-</div>
-
-</section>
-
-
-<section id="support">
-
-<h2>Support</h2>
-
-<p>
-If you have questions or encounter issues with one of the assets,
-please contact support.
-</p>
-
-<p>
-<strong>Email:</strong> support@mkdevtools.com
-</p>
-
-<p>
-When requesting support, please include:
-</p>
-
-<ul>
-<li>Unity version</li>
-<li>Asset version</li>
-<li>Target platform</li>
-<li>Error messages or logs</li>
-</ul>
-
-</section>
-
-
-<section id="documentation">
-
-<h2>Documentation</h2>
-
-<p>
-Documentation for each asset can be found in the asset package
-and in the online documentation.
-</p>
-
-</section>
-
-
-<section id="about">
-
-<h2>About</h2>
-
-<p>
-MK DevTools is an independent Unity asset publisher focused on small,
-practical tools that help developers build games faster and more reliably.
-</p>
-
-</section>
-
-<footer>
-
-<p>
-© 2026 MK DevTools
-</p>
-
-</footer>
-
-</div>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 MK DevTools</p>
+      <p><a href="index.html">Home</a></p>
+    </div>
+  </footer>
 
 </body>
 </html>
