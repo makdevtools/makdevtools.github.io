@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Haptics Pro Documentation | MK DevTools</title>
+  <meta
+    name="description"
+    content="Documentation for Mobile Haptics Pro - setup, usage, no-code components, patterns, event mapping, mixer system, editor tools, testing, and troubleshooting."
+  >
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .docs-layout{
+      display:grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap:24px;
+      align-items:start;
+    }
+
+    .docs-sidebar{
+      position:sticky;
+      top:90px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .docs-sidebar h2{
+      font-size:1rem;
+      margin:0 0 12px;
+    }
+
+    .docs-sidebar ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .docs-sidebar li + li{
+      margin-top:8px;
+    }
+
+    .docs-sidebar a{
+      color:var(--text);
+    }
+
+    .docs-content{
+      min-width:0;
+    }
+
+    .docs-section{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+    }
+
+    .docs-section h2{
+      margin-top:0;
+      font-size:1.5rem;
+    }
+
+    .docs-section h3{
+      margin-top:24px;
+      margin-bottom:8px;
+      font-size:1.1rem;
+    }
+
+    .docs-meta{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:24px;
+    }
+
+    .docs-meta-card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .docs-meta-card h3{
+      margin-top:0;
+      font-size:1rem;
+    }
+
+    .code-block{
+      background:#111827;
+      color:#f3f4f6;
+      padding:14px 16px;
+      border-radius:10px;
+      overflow:auto;
+      font-size:0.95rem;
+      line-height:1.5;
+    }
+
+    .callout{
+      background:var(--surface-alt);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:14px 16px;
+      margin:14px 0;
+    }
+
+    .inline-list li + li{
+      margin-top:6px;
+    }
+
+    .docs-top-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    @media (max-width: 900px){
+      .docs-layout{
+        grid-template-columns: 1fr;
+      }
+
+      .docs-sidebar{
+        position:static;
+      }
+
+      .docs-meta{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a href="../index.html" class="brand">MK DevTools</a>
+        <p class="tagline">Practical Unity tools and utilities for real projects.</p>
+      </div>
+
+      <nav class="main-nav">
+        <a href="../index.html#assets">Assets</a>
+        <a href="../index.html#support">Support</a>
+        <a href="../index.html#documentation">Documentation</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="page-header">
+        <p class="eyebrow">Documentation</p>
+        <h1>Mobile Haptics Pro</h1>
+        <p class="lead">
+          Setup, runtime usage, no-code components, pattern authoring, event mapping,
+          mixer configuration, editor tools, testing, and troubleshooting.
+        </p>
+
+        <div class="docs-top-links">
+          <a class="button" href="mobile-haptics-pro.html">Back to Asset Page</a>
+          <a class="button" href="mailto:support@mkdevtools.com">Contact Support</a>
+        </div>
+      </div>
+
+      <div class="docs-meta">
+        <div class="docs-meta-card">
+          <h3>Supported Platforms</h3>
+          <p>iOS, Android, and safe no-op behavior in Unity Editor or unsupported platforms.</p>
+        </div>
+        <div class="docs-meta-card">
+          <h3>Unity Version</h3>
+          <p>Recommended for Unity 2021.3 LTS or newer.</p>
+        </div>
+        <div class="docs-meta-card">
+          <h3>Dependencies</h3>
+          <p>No third-party runtime dependencies required. Uses standard Unity UI types for no-code UI integration.</p>
+        </div>
+      </div>
+
+      <div class="docs-layout" style="margin-top:24px;">
+        <aside class="docs-sidebar">
+          <h2>On this page</h2>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#runtime-api">Runtime API</a></li>
+            <li><a href="#no-code-components">No-Code Components</a></li>
+            <li><a href="#patterns">Patterns & Library</a></li>
+            <li><a href="#event-mapping">Event Mapping</a></li>
+            <li><a href="#mixer">Haptic Mixer</a></li>
+            <li><a href="#editor-tools">Editor Tools</a></li>
+            <li><a href="#testing">Testing Workflow</a></li>
+            <li><a href="#project-settings">Project Settings</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#documentation-files">Additional Documentation</a></li>
+          </ul>
+        </aside>
+
+        <div class="docs-content">
+
+          <section id="overview" class="docs-section">
+            <h2>Overview</h2>
+            <p>
+              Mobile Haptics Pro is a Unity utility for adding premium-feeling mobile haptics
+              on Android and iOS with a unified API, reusable pattern assets, no-code components,
+              event-driven routing, and a mixer system for arbitration. It also includes editor-side
+              preview and diagnostics tooling for testing and iteration.
+            </p>
+
+            <p>
+              The package supports one-line runtime calls, no-code UI and collision integration,
+              animation and timeline triggering, preset libraries, custom pattern assets, event
+              mapping profiles, mixer profiles, and dedicated editor windows for preview, mapping,
+              and diagnostics.
+            </p>
+
+            <div class="callout">
+              If haptics are unavailable, such as in the Unity Editor, on unsupported devices, or
+              on hardware without haptics support, playback safely no-ops instead of throwing errors.
+            </div>
+          </section>
+
+          <section id="installation" class="docs-section">
+            <h2>Installation</h2>
+            <ol class="inline-list">
+              <li>Import the <code>Assets/MHaptics</code> folder into your Unity project.</li>
+              <li>Optionally open <strong>Project Settings &gt; MHaptics</strong> and create a default <code>MHapticsConfig</code>.</li>
+              <li>Build to a physical Android or iOS device for final haptics validation.</li>
+            </ol>
+
+            <h3>Android note</h3>
+            <p>
+              The Android vibration permission is included through
+              <code>Assets/MHaptics/Plugins/Android/AndroidManifest.xml</code>.
+            </p>
+
+            <h3>Supported platforms</h3>
+            <ul class="inline-list">
+              <li><strong>iOS:</strong> Core Haptics on supported iOS 13+ hardware, with UIKit feedback-generator fallback.</li>
+              <li><strong>Android:</strong> Vibrator and VibrationEffect where available.</li>
+              <li><strong>Unity Editor / unsupported platforms:</strong> safe no-op behavior.</li>
+            </ul>
+          </section>
+
+          <section id="quick-start" class="docs-section">
+            <h2>Quick Start</h2>
+            <p>
+              The fastest way to start is to import the package, optionally create your config asset,
+              then build one of the included demo scenes to a physical device for testing.
+            </p>
+
+            <h3>Simple example</h3>
+            <pre class="code-block"><code>using MHaptics;
+
+public class Example : MonoBehaviour
+{
+    public void OnClick()
+    {
+        Haptics.SelectionChanged();
+    }
+}</code></pre>
+
+            <h3>Fastest way to test</h3>
+            <ol class="inline-list">
+              <li>Open <strong>Tools &gt; MHaptics &gt; Create Demo Scenes</strong>.</li>
+              <li>Use <code>MHapticsDemo_UI.unity</code> for UI and preset testing.</li>
+              <li>Use <code>MHapticsDemo_Physics.unity</code> for collision and trigger testing.</li>
+              <li>Run baseline tests like <strong>Core Status</strong> and <strong>Vibrate</strong> first.</li>
+            </ol>
+
+            <div class="callout">
+              Many emulators and some tablets do not expose a vibrator motor, so physical device testing
+              is recommended for final validation.
+            </div>
+          </section>
+
+          <section id="runtime-api" class="docs-section">
+            <h2>Runtime API</h2>
+
+            <h3>Basic one-line calls</h3>
+            <pre class="code-block"><code>Haptics.ImpactLight();
+Haptics.ImpactMedium();
+Haptics.ImpactHeavy();
+Haptics.SelectionChanged();
+Haptics.NotificationSuccess();
+Haptics.NotificationWarning();
+Haptics.NotificationError();
+Haptics.PulseShort();
+Haptics.PulseDouble();
+Haptics.PulseWarning();
+Haptics.ChargeShort();
+Haptics.ChargeLong();
+Haptics.RumbleShort();
+Haptics.RumbleHeavy();
+Haptics.SelectionSoft();
+Haptics.SelectionStrong();</code></pre>
+
+            <h3>Channel-aware playback</h3>
+            <pre class="code-block"><code>Haptics.Play(HapticPreset.SelectionChanged, HapticMixerChannel.UI, priority: 40, key: "MenuSelect");
+Haptics.Play(myPattern, HapticMixerChannel.Gameplay, priority: 65, key: "CombatImpact");</code></pre>
+
+            <h3>Generic vibrate, cancel, and continuous playback</h3>
+            <pre class="code-block"><code>Haptics.Vibrate(60);
+Haptics.Cancel();
+var cancelled = Haptics.TryCancel();
+
+var started = Haptics.TryStartContinuous();
+Haptics.StopContinuous();</code></pre>
+
+            <h3>Capability checks and settings</h3>
+            <pre class="code-block"><code>var canVibrate = Haptics.CanVibrate();
+var hasVibrator = Haptics.HasVibrator;
+var supportsAmplitude = Haptics.SupportsAmplitudeControl;
+
+Haptics.SetEnabled(true);
+Haptics.SetIntensity(HapticIntensity.Medium);
+Haptics.MinIntervalMs = 35;</code></pre>
+
+            <h3>Force-based impact mapping</h3>
+            <pre class="code-block"><code>Haptics.ImpactFromForce(hitForce);</code></pre>
+
+            <p>Default mapping:</p>
+            <ul class="inline-list">
+              <li><code>0-2</code> → <code>ImpactLight</code></li>
+              <li><code>2-6</code> → <code>ImpactMedium</code></li>
+              <li><code>6+</code> → <code>ImpactHeavy</code></li>
+            </ul>
+
+            <h3>Bind a settings toggle</h3>
+            <pre class="code-block"><code>using UnityEngine.UI;
+
+public Toggle vibrationToggle;
+
+void Start()
+{
+    Haptics.BindToggle(vibrationToggle);
+}</code></pre>
+          </section>
+
+          <section id="no-code-components" class="docs-section">
+            <h2>No-Code Components</h2>
+
+            <h3>HapticButton</h3>
+            <p>
+              Attach to a Unity UI Button for click and optional pointer down/up haptics.
+              Choose either preset output or pattern output, and optionally define a local cooldown.
+            </p>
+
+            <h3>HapticUIEvent</h3>
+            <p>
+              Attach to Button, Slider, Toggle, or Dropdown elements to trigger haptics from
+              click, pointer, or value-changed events without writing code.
+            </p>
+
+            <h3>HapticCollision</h3>
+            <p>
+              Attach to colliders for collision- or trigger-driven haptics. Supports preset or pattern
+              playback, velocity scaling, cooldowns, tag filtering, and layer filtering.
+            </p>
+
+            <h3>HapticTimeline</h3>
+            <p>
+              Plays haptics as part of timing-based gameplay flow. Supports optional patterns, fallback
+              presets, start/event/animation triggers, and delay control.
+            </p>
+
+            <h3>HapticAnimationEvent</h3>
+            <p>
+              Lets animation clips trigger preset or pattern playback via standard Unity animation events.
+            </p>
+
+            <h3>HapticEventBridge</h3>
+            <p>
+              Exposes common haptics methods as UnityEvent-friendly no-argument functions, including impact,
+              notification, pulse, charge, rumble, selection, continuous playback, cancel, enable, and intensity helpers.
+            </p>
+          </section>
+
+          <section id="patterns" class="docs-section">
+            <h2>Patterns & Library</h2>
+
+            <h3>HapticPattern</h3>
+            <p>Create pattern assets through <code>Assets/Create/MHaptics/Haptic Pattern</code>.</p>
+
+            <p>Supported modes:</p>
+            <ul class="inline-list">
+              <li><strong>SinglePreset</strong></li>
+              <li><strong>PresetSequence</strong></li>
+              <li><strong>CustomSequence</strong></li>
+              <li><strong>SmoothCurve</strong></li>
+            </ul>
+
+            <p>
+              SmoothCurve mode samples an intensity curve over time for authored ramps and continuous-feel playback.
+              If a sequence is empty or unsupported, the fallback preset is used.
+            </p>
+
+            <h3>HapticPresetLibrary</h3>
+            <pre class="code-block"><code>HapticPresetLibrary.Play(HapticLibraryPreset.CoinPickup);
+HapticPresetLibrary.Play(HapticLibraryPreset.Success);</code></pre>
+
+            <p>Included preset groups:</p>
+            <ul class="inline-list">
+              <li><strong>Gameplay:</strong> CoinPickup, DamageTick, LevelComplete, Explosion, ComboHit, CriticalHit</li>
+              <li><strong>UI:</strong> ButtonPress, MenuNavigation, ToggleChange, SliderTick</li>
+              <li><strong>System:</strong> Success, Warning, Error</li>
+            </ul>
+          </section>
+
+          <section id="event-mapping" class="docs-section">
+            <h2>Event Mapping</h2>
+
+            <h3>HapticEventMappingProfile</h3>
+            <p>
+              Use mapping profiles to connect semantic gameplay events like <code>Damage</code>,
+              <code>CriticalHit</code>, or <code>LevelUp</code> to a preset or pattern.
+            </p>
+
+            <p>Create via:</p>
+            <pre class="code-block"><code>Assets/Create/MHaptics/Haptic Event Mapping Profile</code></pre>
+
+            <p>Each mapping entry can define:</p>
+            <ul class="inline-list">
+              <li><code>eventId</code></li>
+              <li><code>source</code> (Preset or Pattern)</li>
+              <li><code>preset</code></li>
+              <li><code>pattern</code></li>
+              <li><code>intensityMultiplier</code></li>
+              <li>optional <code>cooldownMs</code></li>
+              <li>optional <code>priority</code></li>
+              <li><code>enabled</code></li>
+            </ul>
+
+            <h3>Activate a profile</h3>
+            <pre class="code-block"><code>HapticEventRouter.SetActiveProfile(profile);</code></pre>
+
+            <h3>Trigger mapped events</h3>
+            <pre class="code-block"><code>HapticEventRouter.TriggerEvent(HapticGameEvents.Damage);
+HapticEventRouter.TriggerEvent(HapticGameEvents.CriticalHit, 1.35f);
+
+HapticEventRouter.TriggerEvent("BossEnraged");
+HapticEventRouter.TriggerEvent("BossEnraged", 1.2f);</code></pre>
+
+            <p>
+              Custom event IDs are supported, and matching is case-insensitive.
+            </p>
+          </section>
+
+          <section id="mixer" class="docs-section">
+            <h2>Haptic Mixer</h2>
+            <p>
+              The mixer arbitrates simultaneous haptic requests with channels, priorities, queueing,
+              blending, cooldowns, and continuous duck/resume behavior.
+            </p>
+
+            <h3>HapticMixerProfile</h3>
+            <p>Create via:</p>
+            <pre class="code-block"><code>Assets/Create/MHaptics/Haptic Mixer Profile</code></pre>
+
+            <p>Channel rules support:</p>
+            <ul class="inline-list">
+              <li><code>channel</code></li>
+              <li><code>cooldownMs</code></li>
+              <li><code>allowInterrupt</code></li>
+              <li><code>allowQueue</code></li>
+              <li><code>maxQueueDepth</code></li>
+              <li><code>allowBlendOnEqualPriority</code></li>
+              <li><code>blendWindowMs</code></li>
+              <li><code>duckLowerPriorityContinuous</code></li>
+            </ul>
+
+            <h3>Assign at runtime</h3>
+            <pre class="code-block"><code>public HapticMixerProfile combatMixer;
+
+void EnterCombat()
+{
+    Haptics.SetMixerProfile(combatMixer);
+}</code></pre>
+
+            <h3>Channel types</h3>
+            <ul class="inline-list">
+              <li>Gameplay</li>
+              <li>UI</li>
+              <li>Event</li>
+              <li>System</li>
+              <li>Continuous</li>
+            </ul>
+
+            <div class="callout">
+              There is also an editor shortcut at <strong>Tools/MHaptics/Locate or Create Mixer Config</strong>
+              to find or create a recommended mixer profile and auto-assign it when possible.
+            </div>
+          </section>
+
+          <section id="editor-tools" class="docs-section">
+            <h2>Editor Tools</h2>
+
+            <h3>Test Window</h3>
+            <p>
+              Open <strong>Tools &gt; MHaptics &gt; Test Window</strong> to test presets, custom pattern assets,
+              intensity settings, and general status in-editor.
+            </p>
+
+            <h3>Preview Lab</h3>
+            <p>
+              The editor preview tooling includes waveform timeline visualization, a shake mock,
+              haptic energy meter, recent event feed, optional haptic audio proxy, and A/B comparison.
+            </p>
+
+            <h3>Visual Haptic Designer</h3>
+            <p>
+              Lets you visually create and edit patterns, move steps, apply templates, preview results,
+              and configure SmoothCurve settings directly in the authoring workflow.
+            </p>
+
+            <h3>Event Mapping Window</h3>
+            <p>
+              A dedicated workflow for creating, loading, editing, and activating event mapping profiles.
+            </p>
+
+            <h3>Mixer Monitor</h3>
+            <p>
+              Open <strong>Tools &gt; MHaptics &gt; Haptic Mixer Monitor</strong> to inspect live mixer decisions
+              such as Accepted, Rejected, Replaced, Queued, Blended, and Ducked.
+            </p>
+          </section>
+
+          <section id="testing" class="docs-section">
+            <h2>Testing Workflow</h2>
+
+            <h3>Recommended workflow</h3>
+            <ol class="inline-list">
+              <li>Start with <code>HapticButton</code> and <code>HapticUIEvent</code> for UI feel.</li>
+              <li>Add <code>HapticCollision</code> for gameplay contact feedback.</li>
+              <li>Use <code>HapticTimeline</code> and <code>HapticAnimationEvent</code> for timing-critical moments.</li>
+              <li>Use <code>HapticPresetLibrary</code> for consistency.</li>
+              <li>Bind player settings with <code>Haptics.BindToggle(...)</code>.</li>
+              <li>Validate final behavior on physical Android and iOS devices.</li>
+            </ol>
+
+            <h3>Demo scenes</h3>
+            <p>Use the demo scene generator to create:</p>
+            <ul class="inline-list">
+              <li><code>Assets/MHaptics/Samples/Demo/Scenes/MHapticsDemo_UI.unity</code></li>
+              <li><code>Assets/MHaptics/Samples/Demo/Scenes/MHapticsDemo_Physics.unity</code></li>
+            </ul>
+
+            <p>
+              The UI demo covers presets, advanced presets, UI components, timeline, animation-event bridge,
+              event mapping triggers, and mixer diagnostics. The physics demo focuses on collision and trigger behavior.
+            </p>
+          </section>
+
+          <section id="project-settings" class="docs-section">
+            <h2>Project Settings</h2>
+            <p>
+              Open <strong>Project Settings &gt; MHaptics</strong> to configure default runtime behavior.
+            </p>
+
+            <h3>General</h3>
+            <ul class="inline-list">
+              <li><code>enabledByDefault</code></li>
+              <li><code>debugLogging</code></li>
+              <li><code>minimumIntervalMs</code></li>
+              <li><code>defaultIntensity</code></li>
+            </ul>
+
+            <h3>Android</h3>
+            <p>
+              Includes separate impact duration, selection duration, amplitude, and notification waveform settings.
+            </p>
+
+            <h3>iOS</h3>
+            <p>
+              Includes Core Haptics enablement, UIKit fallback behavior, generator preparation options,
+              continuous playback tuning, and intensity/sharpness profiles for runtime intensity modes.
+            </p>
+
+            <h3>Editor</h3>
+            <p>
+              <code>editorPlayModeUseAudioProxy</code> enables the haptic audio proxy in Play Mode even when no tool window is open.
+            </p>
+
+            <h3>Mixer</h3>
+            <p>
+              Assign an optional <code>mixerProfile</code> to control runtime arbitration.
+            </p>
+          </section>
+
+          <section id="troubleshooting" class="docs-section">
+            <h2>Troubleshooting</h2>
+
+            <h3>No vibration on Android</h3>
+            <ol class="inline-list">
+              <li>Confirm device-level vibration or haptics settings are enabled.</li>
+              <li>Test on physical phone hardware.</li>
+              <li>Run the demo <strong>Vibrate</strong> test action.</li>
+              <li>Check logs for <code>[MHaptics]</code> warnings.</li>
+            </ol>
+
+            <h3>Nothing happens in the Unity Editor</h3>
+            <p>
+              Hardware haptics in the editor are expected to be safe simulation or no-op.
+              Use the Test Window and Preview Lab to evaluate timing and intensity intent,
+              then validate final feel on physical devices.
+            </p>
+
+            <h3>Too many haptics fire</h3>
+            <ul class="inline-list">
+              <li>Increase <code>Haptics.MinIntervalMs</code>.</li>
+              <li>Use local cooldowns on the individual components.</li>
+            </ul>
+          </section>
+
+          <section id="documentation-files" class="docs-section">
+            <h2>Additional Documentation</h2>
+            <p>Useful package documentation locations:</p>
+            <ul class="inline-list">
+              <li><code>Assets/MHaptics/Documentation/README.md</code></li>
+              <li><code>Assets/MHaptics/Documentation/TESTING_GUIDE.md</code></li>
+              <li><code>Assets/MHaptics/Samples/Demo/README.md</code></li>
+              <li><code>Assets/MHaptics/Documentation/ASSET_STORE_COMPLIANCE.md</code></li>
+              <li><code>Assets/MHaptics/Documentation/CHANGELOG.md</code></li>
+            </ul>
+
+            <div class="callout">
+              For onboarding non-programmers, start with the demo scene and no-code components first,
+              then introduce the runtime API, event mapping, and mixer features afterward.
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 MK DevTools</p>
+      <p><a href="mobile-haptics-pro.html">Back to Asset Page</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
